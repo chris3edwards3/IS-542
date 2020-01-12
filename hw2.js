@@ -74,7 +74,7 @@ function intSum() {
             count += 1;
             sum += count;
         }
-        ans = "Answer " + sum;
+        ans = "Answer = " + sum;
     }
     document.getElementById("intAns").innerHTML = ans;
 }
