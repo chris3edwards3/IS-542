@@ -1,14 +1,16 @@
 /*
 IS-542 HW-2 JavaScript Functions
+https://chris3edwards3.github.io/IS-542/hw2.html
 By: Chris Edwards
 Jan 8, 2020
  */
+
 
 // Function that calculates the nth Fibonacci Number.
 // The 0th is 0, 1st is 1, 2nd is 1, 3rd is 2, etc.
 
 function fibonacci() {
-    let n = document.getElementById("fib").value;
+    let n = Math.round(document.getElementById("fib").value);
     let ans;
 
     if (n < 0) {
@@ -27,7 +29,6 @@ function fibonacci() {
             b = ans;
             count += 1;
         }
-        // return ans;
     }
     document.getElementById("fibAns").innerHTML = "Answer = " + ans;
 }
@@ -36,8 +37,9 @@ function fibonacci() {
 // Function that calculates n! (the factorial of n).
 
 function factorial() {
-    let n = document.getElementById("fac").value;
+    let n = Math.round(document.getElementById("fac").value);
     let ans;
+    console.log(n);
 
     if (n < 0) {
         ans = "No Negative Numbers";
@@ -58,8 +60,8 @@ function factorial() {
 // Function that sums up the integers between two given integers (inclusive).
 
 function intSum() {
-    let int1 = document.getElementById("int1").value;
-    let int2 = document.getElementById("int2").value;
+    let int1 = Math.round(document.getElementById("int1").value);
+    let int2 = Math.roung(document.getElementById("int2").value);
     let ans;
 
     if (int1 === int2){
@@ -82,7 +84,7 @@ function intSum() {
 // Function that splits up a monetary value (cents) into different coins.
 
 function centsToCoins() {
-    let cents = document.getElementById("cents").value;
+    let cents = Math.round(document.getElementById("cents").value);
 
     // Calculations
     let quarterRem = cents % 25;
