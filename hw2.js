@@ -61,7 +61,7 @@ function factorial() {
 
 function intSum() {
     let int1 = Math.round(document.getElementById("int1").value);
-    let int2 = Math.roung(document.getElementById("int2").value);
+    let int2 = Math.round(document.getElementById("int2").value);
     let ans;
 
     if (int1 === int2){
