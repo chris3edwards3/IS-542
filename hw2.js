@@ -39,7 +39,6 @@ function fibonacci() {
 function factorial() {
     let n = Math.round(document.getElementById("fac").value);
     let ans;
-    console.log(n);
 
     if (n < 0) {
         ans = "No Negative Numbers";
