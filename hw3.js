@@ -64,7 +64,7 @@ const validator = (function () {
             return isValid;
         },
         isNonEmpty: function (text) {
-            if (text === '') {
+            if ((text === undefined) || (text === '')) {
                 isValid = false;
             }
             return isValid;
@@ -101,13 +101,13 @@ validator.reset();
 validator.isNumeric(-5.3456);
 validator.isInteger(56);
 validator.isNegativeInteger(-1);
-validator.isPositiveInteger(5);
+validator.isPositiveInteger(3);
 validator.isNonNegativeInteger(0);
-validator.isInRange(4,1,8);
+validator.isInRange(4,1, 5);
 validator.isValidEmail('code@byu.edu');
-validator.isNonEmpty('String');
-validator.lengthIsInRange('text', 1, 6);
-validator.matchesRegex('abcd', /ab/);
+validator.isNonEmpty('byu');
+validator.lengthIsInRange('byu', undefined, 9);
+validator.matchesRegex('abcdefg', /ab/);
 
 if (validator.isValid()) {
     console.log('All is well');
