@@ -3,14 +3,10 @@ Practice Encapsulation
 Module that provides validation for a given string for the various conditions.
 Chris Edwards | Jan 14, 2020
 
-I had never really programmed with nested functions in this way. It was good practice to encapsulate a variable and
-make it private outside the function.
-I learned some other things while doing this as well. First, I didn't have previous experience with regular expressions.
-It was good to learn some of the methods associated with those. I also had good practice writing efficient if loops. I
-use WebStorm and the built-in linter gives suggestions. One of those was to reverse my if loop, and it helped reduce a
-few lines of code and make my loop easier to understand.
-As far as the easy and hard parts, the functions dealing with numbers were easy, whereas the email and string length
-functions were more difficult.
+I had never really programmed with nested functions in this way. It was good practice to encapsulate a variable and make it private outside the function.
+I learned some other things while doing this as well. First, I didn't have previous experience with regular expressions.It was good to learn some of the methods associated with those.
+I also had good practice writing efficient if loops. I use WebStorm and the built-in linter gives suggestions. One of those was to reverse my if loop, and it helped reduce a few lines of code and make my loop easier to understand.
+As far as the easy and hard parts, the functions dealing with numbers were easy, whereas the email and string length functions were more difficult.
  */
 
 const validator = (function () {
