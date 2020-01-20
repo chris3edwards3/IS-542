@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>hw2</title>
+</head>
+<body>
+
+<script type="text/javascript" src="hw4.js"></script>
+
+<h1>Form Validation</h1>
+<h2>IS-542 HW-4</h2>
+<p>By: Chris Edwards | January 20, 2020</p>
+<br>
+
+<h4>First Name:</h4>
+<form>
+    <label for="fname"></label><input type="text" id="fname">
+</form>
+
+<h4>Last Name:</h4>
+<form>
+    <label for="lname"></label><input type="text" id="lname">
+</form>
+
+<h4>Age (yrs):</h4>
+<form>
+    <label for="age"></label><input type="text" id="age" style='width:4ch'>
+</form>
+
+<h4>Phone Number (numerals only):</h4>
+<form>
+    <label for="pnum"></label><input type="text" id="pnum">
+</form>
+<!--<form>-->
+<!--    <label for="pnum"></label><input type="text" id="pnum1" style='width:4ch'>-->
+<!--    <label for="pnum2">- </label><input type="text" id="pnum2" style='width:4ch'>-->
+<!--    <label for="pnum3">- </label><input type="text" id="pnum3" style='width:6ch'>-->
+<!--</form>-->
+
+
+<!--Email-->
+<h4>Email:</h4>
+<form>
+    <label for="email"></label><input type="text" id="email">
+</form>
+
+<br>
+<p>
+    <button onclick="validateForm()">Submit</button>
+</p>
+<h4>
+    <div id="errors"></div>
+</h4>
+
+</body>
+</html>
