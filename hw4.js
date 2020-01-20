@@ -1,6 +1,6 @@
 /*
 Practice Encapsulation
-Module that provides validation for a given string for the various conditions.
+Module that provides validation for form filled out on the hw4.html page.
 Chris Edwards | Jan 20, 2020
  */
 
