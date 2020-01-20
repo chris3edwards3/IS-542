@@ -14,33 +14,31 @@
 <br>
 
 <h4>First Name:</h4>
+<h6><div id="fnErr" style="color:red"></div></h6>
 <form>
     <label for="fname"></label><input type="text" id="fname">
 </form>
 
 <h4>Last Name:</h4>
+<h6><div id="lnErr" style="color:red"></div></h6>
 <form>
     <label for="lname"></label><input type="text" id="lname">
 </form>
 
 <h4>Age (yrs):</h4>
+<h6><div id="ageErr" style="color:red"></div></h6>
 <form>
     <label for="age"></label><input type="text" id="age" style='width:4ch'>
 </form>
 
 <h4>Phone Number (numerals only):</h4>
+<h6><div id="pnErr" style="color:red"></div></h6>
 <form>
     <label for="pnum"></label><input type="text" id="pnum">
 </form>
-<!--<form>-->
-<!--    <label for="pnum"></label><input type="text" id="pnum1" style='width:4ch'>-->
-<!--    <label for="pnum2">- </label><input type="text" id="pnum2" style='width:4ch'>-->
-<!--    <label for="pnum3">- </label><input type="text" id="pnum3" style='width:6ch'>-->
-<!--</form>-->
 
-
-<!--Email-->
-<h4>Email:</h4>
+<h4>Email Address:</h4>
+<h6><div id="emErr" style="color:red"></div></h6>
 <form>
     <label for="email"></label><input type="text" id="email">
 </form>
@@ -49,9 +47,7 @@
 <p>
     <button onclick="validateForm()">Submit</button>
 </p>
-<h4>
-    <div id="errors" style="color:red"></div>
-</h4>
+
 <h4>
     <div id="success" style="color:darkgreen"></div>
 </h4>

@@ -6,50 +6,60 @@ Chris Edwards | Jan 20, 2020
 
 const validator = (function () {
     let isValid = true;
+    let errorArray = Array(9);
     return {
+        isNonEmpty: function (text) {
+            isValid = ((typeof(text) === 'string') && (text.length > 0));
+            if (!isValid) { errorArray[0] = 'Empty Field. '}
+            return errorArray;
+        },
         isNumeric: function (text) {
             isValid = !isNaN(text);
-            return isValid;
+            if (!isValid) { errorArray[1] = 'Must be Numeric. '}
+            return errorArray;
         },
         isInteger: function (text) {
             isValid = Number.isInteger(text);
-            return isValid;
+            if (!isValid) { errorArray[2] = 'Must be an Integer. '}
+            console.log(isValid);
+            return errorArray;
         },
         isNegativeInteger: function (text) {
-            isValid = (Number.isInteger(text)) && (text < 0);
-            return isValid;
+            isValid = (Number.isInteger(text)) && (Number(text) < 0);
+            if (!isValid) { errorArray[3] = 'Must be a Negative Integer. '}
+            return errorArray;
         },
         isPositiveInteger: function (text) {
-            isValid = (Number.isInteger(text)) && (text > 0);
-            return isValid;
+            isValid = (Number.isInteger(text)) && (Number(text) > 0);
+            if (!isValid) { errorArray[4] = 'Must be a Positive Integer. '}
+            return errorArray;
         },
         isNonNegativeInteger: function (text) {
-            isValid = (Number.isInteger(text)) && (text >= 0);
-            return isValid;
+            isValid = (Number.isInteger(text)) && (Number(text) >= 0);
+            if (!isValid) { errorArray[5] = 'Must be an Integer 0 or greater. '}
+            return errorArray;
         },
         isInRange: function (text, m, n) {
             isValid = true;
             if (isNaN(text)) {
                 isValid = false;
             } else {
-                if ((m !== undefined) && (text < m)) {
+                if ((m !== undefined) && (Number(text) < m)) {
                     isValid = false;
                 }
-                if ((n !== undefined) && (text > n)) {
+                if ((n !== undefined) && (Number(text) > n)) {
                     isValid = false;
                 }
             }
-            return isValid;
+            if (!isValid) { errorArray[6] = 'Invalid Age, must be between 0 and 110. '}
+            return errorArray;
         },
         isValidEmail: function (text) {
             // Cite Source of this regular expression
             let rexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             isValid = rexp.test(text);
-            return isValid;
-        },
-        isNonEmpty: function (text) {
-            isValid = ((typeof(text) === 'string') && (text.length > 0));
-            return isValid;
+            if (!isValid) { errorArray[7] = 'Invalid Email Address. '}
+            return errorArray;
         },
         lengthIsInRange: function (text, m, n) {
             isValid = true;
@@ -62,59 +72,63 @@ const validator = (function () {
             if ((n !== undefined) && (text.length > n)) {
                 isValid = false;
             }
-            return isValid;
+            if (!isValid) { errorArray[8] = 'Must be 10 or 11 digits. '}
+            return errorArray;
         },
         matchesRegex: function (text, regex) {
             isValid = regex.test(text);
-            return isValid;
+            if (!isValid) { errorArray[9] = 'String does not match given regex. '}
+            return errorArray;
         },
         isValid: function () {
-            return isValid;
+            return errorArray.join(separator = '');
         },
         reset: function () {
             isValid = true;
-        }
+            errorArray = Array(9);
+        },
     }
 }());
 
 function validateForm() {
     let fname = document.getElementById("fname").value;
+    validator.isNonEmpty(fname);
+    let fnErr = validator.isValid();
+    document.getElementById("fnErr").innerHTML = fnErr;
+    validator.reset();
+
     let lname = document.getElementById("lname").value;
+    validator.isNonEmpty(lname);
+    let lnErr = validator.isValid();
+    document.getElementById("lnErr").innerHTML = lnErr;
+    validator.reset();
+
     let age = document.getElementById("age").value;
+    validator.isNonEmpty(age);
+    validator.isNumeric(age);
+    validator.isInRange(age, 0, 110);
+    let ageErr = validator.isValid();
+    document.getElementById("ageErr").innerHTML = ageErr;
+    validator.reset();
+
     let pnum = document.getElementById("pnum").value;
+    validator.isNonEmpty(pnum);
+    validator.isNumeric(pnum);
+    validator.lengthIsInRange(pnum, 10,11);
+    let pnErr = validator.isValid();
+    document.getElementById("pnErr").innerHTML = pnErr;
+    validator.reset();
+
     let email = document.getElementById("email").value;
-    let errors = '';
+    validator.isNonEmpty(email);
+    validator.isValidEmail(email);
+    let emErr = validator.isValid();
+    document.getElementById("emErr").innerHTML = emErr;
+    validator.reset();
+
+    let strSum = fnErr + lnErr + ageErr + pnErr + emErr;
     let success = '';
-
-    if (!validator.isNonEmpty(fname) || !validator.isNonEmpty(lname)) {
-        errors = errors.concat('Name fields cannot be empty. ');
-    }
-
-    if (!validator.isNonEmpty(age)) {
-        errors = errors.concat('Age field cannot be empty. ')
-    } else if (!validator.isNonNegativeInteger(Math.round(age))) {
-        errors = errors.concat('Age field must be an integer. ')
-    } else if (!validator.isInRange(age, 0, 110)) {
-        errors = errors.concat('Please enter a valid age (less than 110). ')
-    }
-
-    if (!validator.isNonEmpty(pnum)) {
-        errors = errors.concat('Phone Number field cannot be empty. ')
-    } else if (!validator.lengthIsInRange(pnum, 10,11)) {
-        errors = errors.concat('Phone number must be 10 or 11 digits. ')
-    }
-
-    if (!validator.isNonEmpty(email)) {
-        errors = errors.concat('Email field cannot be empty. ')
-    } else if (!validator.isValidEmail(email)) {
-        errors = errors.concat('Invalid Email Address. ')
-    }
-
-    if (errors === '') {
-        success = 'Success!';
-    }
-
-    document.getElementById("errors").innerHTML = errors;
+    if (strSum === '') { success = 'Successful Submission!' }
     document.getElementById("success").innerHTML = success;
 }
 
