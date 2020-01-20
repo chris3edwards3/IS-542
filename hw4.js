@@ -43,7 +43,7 @@ const validator = (function () {
         },
         isValidEmail: function (text) {
             // Cite Source of this regular expression
-            let rexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let rexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             isValid = rexp.test(text);
             return isValid;
         },
@@ -84,6 +84,7 @@ function validateForm() {
     let pnum = document.getElementById("pnum").value;
     let email = document.getElementById("email").value;
     let errors = '';
+    let success = '';
 
     if (!validator.isNonEmpty(fname) || !validator.isNonEmpty(lname)) {
         errors = errors.concat('Name fields cannot be empty. ');
@@ -109,7 +110,12 @@ function validateForm() {
         errors = errors.concat('Invalid Email Address. ')
     }
 
+    if (errors === '') {
+        success = 'Success!';
+    }
+
     document.getElementById("errors").innerHTML = errors;
+    document.getElementById("success").innerHTML = success;
 }
 
 
