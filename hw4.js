@@ -1,6 +1,7 @@
 /*
+hw4.js
 Practice Encapsulation
-Module that provides validation for form filled out on the hw4.html page.
+Module that provides validation for the form filled out on the 'hw4.html' page.
 Chris Edwards | Jan 20, 2020
  */
 
@@ -10,33 +11,33 @@ const validator = (function () {
     return {
         isNonEmpty: function (text) {
             isValid = ((typeof(text) === 'string') && (text.length > 0));
-            if (!isValid) { errorArray[0] = 'Empty Field. '}
+            if (!isValid) { errorArray.push('Empty Field. ') }
             return errorArray;
         },
         isNumeric: function (text) {
             isValid = !isNaN(text);
-            if (!isValid) { errorArray[1] = 'Must be Numeric. '}
+            if (!isValid) { errorArray.push('Must be Numeric. ') }
             return errorArray;
         },
         isInteger: function (text) {
             isValid = Number.isInteger(text);
-            if (!isValid) { errorArray[2] = 'Must be an Integer. '}
+            if (!isValid) { errorArray.push('Must be an Integer. ') }
             console.log(isValid);
             return errorArray;
         },
         isNegativeInteger: function (text) {
             isValid = (Number.isInteger(text)) && (Number(text) < 0);
-            if (!isValid) { errorArray[3] = 'Must be a Negative Integer. '}
+            if (!isValid) { errorArray.push('Must be a Negative Integer. ') }
             return errorArray;
         },
         isPositiveInteger: function (text) {
             isValid = (Number.isInteger(text)) && (Number(text) > 0);
-            if (!isValid) { errorArray[4] = 'Must be a Positive Integer. '}
+            if (!isValid) { errorArray.push('Must be a Positive Integer. ') }
             return errorArray;
         },
         isNonNegativeInteger: function (text) {
             isValid = (Number.isInteger(text)) && (Number(text) >= 0);
-            if (!isValid) { errorArray[5] = 'Must be an Integer 0 or greater. '}
+            if (!isValid) { errorArray.push('Must be an Integer 0 or greater. ') }
             return errorArray;
         },
         isInRange: function (text, m, n) {
@@ -51,14 +52,14 @@ const validator = (function () {
                     isValid = false;
                 }
             }
-            if (!isValid) { errorArray[6] = 'Invalid Age, must be between 0 and 110. '}
+            if (!isValid) { errorArray.push('Must be between 0 and 110. ') }
             return errorArray;
         },
         isValidEmail: function (text) {
             // Cite Source of this regular expression
             let rexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             isValid = rexp.test(text);
-            if (!isValid) { errorArray[7] = 'Invalid Email Address. '}
+            if (!isValid) { errorArray.push('Invalid Email Address. ') }
             return errorArray;
         },
         lengthIsInRange: function (text, m, n) {
@@ -72,12 +73,12 @@ const validator = (function () {
             if ((n !== undefined) && (text.length > n)) {
                 isValid = false;
             }
-            if (!isValid) { errorArray[8] = 'Must be 10 or 11 digits. '}
+            if (!isValid) { errorArray.push('Must be 10 or 11 digits. ') }
             return errorArray;
         },
         matchesRegex: function (text, regex) {
             isValid = regex.test(text);
-            if (!isValid) { errorArray[9] = 'String does not match given regex. '}
+            if (!isValid) { errorArray.push('String does not match given regex. ') }
             return errorArray;
         },
         isValid: function () {
